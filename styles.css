@@ -1,0 +1,63 @@
+body{
+ background-color: #1D1E25;
+ font-family: Verdana;
+ }
+div:hover {
+  background-color: #787980;
+  box-shadow: 2px 5px #4A4B52;
+}
+.pic:hover{
+
+}
+div{
+   background-color:#4A4B52;
+   color: whitesmoke;
+   flex: 1;
+   position: relative;
+  margin: .5rem;
+   box-sizing: border-box;
+   border: .2rem solid transparent;
+   border-radius: 2rem;
+   padding: 2.4rem;
+}
+.pic{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /*/width: 50%;*/
+ }
+.info{
+   width: 40%;
+   margin-left: auto;
+   margin-right: auto;
+   text-align:center;
+ }
+.about_me{
+   width: 40%;
+   margin-left: 0;
+   margin-right: auto;
+}
+.career{
+   width: 40%;
+   margin-left: auto;
+   margin-right: auto;
+}
+.education{
+   width: 40%;
+   margin-left: auto;
+   margin-right: 0;
+}
+.skills{
+   width: 40%;
+   margin-left: 0;
+   margin-right: auto;
+}
+.projects{
+   width: 40%;
+   margin-left: auto;
+   margin-right: auto;
+}
+.phone{
+   margin-top: 3px;   
+   vertical-align: middle;
+ }
