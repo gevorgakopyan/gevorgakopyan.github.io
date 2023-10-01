@@ -1,17 +1,17 @@
 import React from 'react';
 import './AboutMe.css';
+import myPicture from "./MyPic.jpg"
 
 const AboutMe = () => {
   return (
     <div className="about-me-container">
-      {/* <img src={myPicture} alt="Your Name" className="my-picture" /> */}
+      <img src={myPicture} alt="Your Name" className="my-picture" />
       <div className="about-me-text">
-        <h1>Your Name</h1>
+        <h1>Gevorg Akopyan</h1>
         <p>
-          Hello! I'm Your Name. I am passionate about web development and have
-          experience in creating interactive and user-friendly web applications
-          using React. In my free time, I enjoy reading, hiking, and exploring
-          new technologies.
+        I am a rising senior at UCLA with a genuine passion for software engineering and technology.
+        Throughout my academic journey, I have honed my skills in a diverse range of computer science topics, ensuring a broad yet profound understanding of the field. Through my internship experiences, I have had the opportunity to translate theoretical knowledge into practical solutions, working collaboratively in fast-paced environments.
+        I am seeking a full-time Software Engineering position for a new graduate where I can further contribute, learn, and grow.
         </p>
       </div>
     </div>
