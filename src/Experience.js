@@ -37,7 +37,7 @@ function Experience() {
   return (
     <Container>
       <Navbar />
-      <Grid container spacing={5}>
+      <Grid container spacing={5} pb={3}>
         {experiences.map(({ img, title, position, duration, bullets }) => (
           <>
             <Grid

@@ -1,54 +1,8 @@
-.contact-me-container {
-    text-align: center;
-}
-.contact {
-padding: 60px;
-padding-left: 150px;
-padding-right: 150px;
-color: #242424;
-font-size: 40px;
-line-height: 200%;
+.enlarge-on-hover {
+  transition: transform 0.2s;
+  cursor: pointer;
 }
 
-.contact-me {
-background-image: url('/src/MyPic.jpg');
-background-position: center;
-background-size: cover;
-background-repeat: no-repeat;
-color: rgb(255, 255, 255);
-font-size: 75px;
-}
-
-.contact-email {
-font-size: 30px;
-}
-
-.social-icon-link {
-color: #fff;
-font-size: 24px;
-}
-
-.social-media {
-max-width: 1000px;
-width: 100%;
-}
-
-/* .social-media-wrap {
-display: flex;
-justify-content: space-between;
-align-items: center;
-width: 90%;
-max-width: 1000px;
-margin: 40px auto 0 auto;
-} */
-
-.social-icons {
-display: flex;
-padding: 5% 40%;
-text-align: center;
-justify-content: space-around;
-}
-.social-icon {
-color: black;
-font-size: 40px;
+.enlarge-on-hover:hover {
+  transform: scale(1.1);
 }

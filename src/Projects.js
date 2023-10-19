@@ -39,7 +39,7 @@ function Projects() {
   return (
     <Container>
       <Navbar />
-      <Grid container spacing={5}>
+      <Grid container spacing={5} pb={3}>
         {projects.map(({ img, title, skills, bullets }) => (
           <>
             <Grid

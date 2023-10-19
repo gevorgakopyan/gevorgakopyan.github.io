@@ -1,45 +1,64 @@
 import React from 'react';
 import 'font-awesome/css/font-awesome.min.css';
-import "./ContactMe.css"
+import './ContactMe.css';
+import Navbar from './Navbar';
+import { Box, Container, Link, Typography } from '@mui/material';
+import EmailIcon from '@mui/icons-material/Email';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
+import styled from '@emotion/styled';
 
 function ContactMe() {
-    const styles = {
-        box: {
-            backgroundColor: 'gray',
-            color: 'white',
-            padding: '20px',
-            textAlign: 'center',
-            width: '300px',
-            borderRadius: '8px',
-            margin: 'auto',
-            marginTop: '45vh'
-        },
-        iconContainer: {
-            display: 'flex',
-            justifyContent: 'space-around',
-            marginTop: '10px',
-        },
-        icon: {
-            cursor: 'pointer',
-        },
-    };
+  const ContactLink = styled(Link)(({ theme }) => ({
+    textDecoration: 'none',
+  }));
 
-    return (
-        <div style={styles.box}>
-            <p>Let's Connect!</p>
-            <div style={styles.iconContainer}>
-                <a href="https://www.linkedin.com/in/gevorg-akopyan-2b92b7184/" target="_blank" rel="noopener noreferrer">
-                    <i className="fa fa-linkedin" style={styles.icon}></i>
-                </a>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-                    <i className="fa fa-github" style={styles.icon}></i>
-                </a>
-                <a href="mailto:gevorgakopyan01@gmail.com">
-                    <i className="fa fa-envelope" style={styles.icon}></i>
-                </a>
-            </div>
-        </div>
-    );
+  return (
+    <>
+      <Navbar />
+      <Container sx={{ textAlign: 'center' }}>
+        <Typography variant='h2' mt={3}>
+          Let's Connect!
+        </Typography>
+        <Box className='enlarge-on-hover'>
+          <ContactLink href='mailto:ethantjackson44@gmail.com'>
+            <Typography variant='h5' mt={3}>
+              <EmailIcon sx={{ position: 'relative', top: '0.3rem' }} />
+              &nbsp;ethantjackson44@gmail.com
+            </Typography>
+          </ContactLink>
+        </Box>
+        <Box className='enlarge-on-hover'>
+          <ContactLink
+            href='https://www.linkedin.com/in/ethantjackson/'
+            target='_blank'
+          >
+            <Typography variant='h5' mt={3}>
+              <LinkedInIcon sx={{ position: 'relative', top: '0.3rem' }} />
+              &nbsp;ethantjackson
+            </Typography>
+          </ContactLink>
+        </Box>
+        <Box className='enlarge-on-hover'>
+          <ContactLink href='https://github.com/ethantjackson' target='_blank'>
+            <Typography variant='h5' mt={3}>
+              <GitHubIcon sx={{ position: 'relative', top: '0.3rem' }} />
+              &nbsp;ethantjackson
+            </Typography>
+          </ContactLink>
+        </Box>
+        <Box className='enlarge-on-hover'>
+          <ContactLink>
+            <Typography variant='h5' mt={3}>
+              <PhoneEnabledIcon sx={{ position: 'relative', top: '0.3rem' }} />
+              &nbsp;(669) 294-1535
+            </Typography>
+          </ContactLink>
+        </Box>
+      </Container>
+    </>
+  );
 }
 
 export default ContactMe;
