@@ -1,37 +1,38 @@
 import { Box, Container, Grid, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './Projects.css';
-import SquareTestImg from './img/square_test_img.jpeg';
+import GregImg from './img/greg.png';
+import WorkoutBuilderImg from './img/workout_builder.png';
+import RhythmOpImg from './img/rhythmop.png';
+import HealersBloomImg from './img/healers_bloom.png';
+import StackerImg from './img/stacker.png';
+import BrickEaterImg from './img/brick_eater.png';
+import HumanTaskManagerImg from './img/human_task_manager.png';
 import Navbar from './Navbar';
 
 function Projects() {
-  const options = {
-    root: null, // The viewport is the default root
-    rootMargin: '0px', // Margin around the root
-    threshold: 0.5, // Trigger the callback when 50% of the element is visible
-  };
+  const fadeInDivs = useRef([]);
 
-  const handleFade = (intersections) => {
-    intersections.forEach((ele) => {
-      if (ele.isIntersecting) {
-        ele.target.classList.add('visible');
-      } else if (ele.target.getBoundingClientRect().top > window.scrollY) {
-        ele.target.classList.remove('visible');
+  const handleScroll = (intersections) => {
+    fadeInDivs.current.forEach((div) => {
+      if (
+        div.getBoundingClientRect().top >=
+        (window.innerHeight || document.documentElement.clientHeight)
+      ) {
+        div.classList.remove('visible');
+      } else {
+        div.classList.add('visible');
       }
     });
   };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(handleFade, options);
-    setTimeout(() => {
-      const fadeInDivs = document.querySelectorAll('.fade-in');
-      fadeInDivs.forEach((div) => {
-        observer.observe(div);
-      });
-    }, 500);
+    document.addEventListener('scroll', handleScroll);
+    handleScroll();
+    fadeInDivs.current = document.querySelectorAll('.fade-in');
 
     return () => {
-      observer.disconnect();
+      document.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -39,7 +40,7 @@ function Projects() {
     <Container>
       <Navbar />
       <Grid container spacing={5}>
-        {projects.map(({ title, skills, bullets }) => (
+        {projects.map(({ img, title, skills, bullets }) => (
           <>
             <Grid
               item
@@ -50,10 +51,25 @@ function Projects() {
               className='fade-in'
             >
               <Box
-                component='img'
-                sx={{ width: '100%', maxWidth: { xs: 'none', sm: '325px' } }}
-                src={SquareTestImg}
-              />
+                sx={{
+                  aspectRatio: '1 / 1',
+                  maxWidth: { xs: 'none', sm: '325px' },
+                  maxHeight: { xs: 'none', sm: '325px' },
+                  display: 'flex',
+                  paddingLeft: { xs: '0', sm: 'calc(100% - 325px)' },
+                }}
+              >
+                <Box
+                  component='img'
+                  sx={{
+                    height: 'auto',
+                    width: '100%',
+                    objectFit: 'contain',
+                    backgroundColor: '#0f0f0f',
+                  }}
+                  src={img}
+                />
+              </Box>
             </Grid>
             <Grid
               item
@@ -98,6 +114,7 @@ function Projects() {
 
 const projects = [
   {
+    img: RhythmOpImg,
     title: 'Rhythm Operation',
     skills: 'Unity, C#',
     bullets: [
@@ -110,17 +127,7 @@ const projects = [
     ],
   },
   {
-    title: 'Workout Builder',
-    skills: 'MongoDB, Express.js, Reacts.js, Node.js, CSS, JavaScript',
-    bullets: [
-      '%link%https://workout-builder.netlify.app/',
-      'Developed a MERN stack web app where users can search an original MongoDB database of over 250 workouts by target muscles and available equipment (via a REST API)',
-      'Architected full-stack functionality to allow users to create and save custom workout guides',
-      'Engineered a robust user system, with hashed passwords using Bcrypt and Google Oauth login using Passport; utilized JWT authentication for protected routes',
-      'Incorporated 3+ Materialize components, including cards, carousels, and tooltips for a more interactive user experience; leveraged the Materialize grid system for completely responsive styling on all device types',
-    ],
-  },
-  {
+    img: GregImg,
     title: 'Greg',
     skills: 'WebGL, MongoDB, Express.js, Reacts.js, Node.js, CSS, JavaScript',
     bullets: [
@@ -132,15 +139,52 @@ const projects = [
     ],
   },
   {
+    img: WorkoutBuilderImg,
+    title: 'Workout Builder',
+    skills: 'MongoDB, Express.js, Reacts.js, Node.js, CSS, JavaScript',
+    bullets: [
+      '%link%https://workout-builder.netlify.app/',
+      'Developed a MERN stack web app where users can search an original MongoDB database of over 250 workouts by target muscles and available equipment (via a REST API)',
+      'Architected full-stack functionality to allow users to create and save custom workout guides',
+      'Engineered a robust user system, with hashed passwords using Bcrypt and Google Oauth login using Passport; utilized JWT authentication for protected routes',
+      'Incorporated 3+ Materialize components, including cards, carousels, and tooltips for a more interactive user experience; leveraged the Materialize grid system for completely responsive styling on all device types',
+    ],
+  },
+  {
+    img: HealersBloomImg,
+    title: "Healer's Bloom",
+    skills: 'Unity, C#',
+    bullets: [
+      '%link%https://zlc122.itch.io/healers-bloom',
+      'Collaborated with a small team of artists, musicians, writers, and programmers to assemble a game over a 2-day hackathon',
+      'Exercised rapid learning ability, quickly learning Unity and C# over the course of the hackathon',
+      'Proactively orchestrated collaboration between teammates of diverse backgrounds; Exercised communication and leadership in determining blockers and project goals/requirements quickly',
+    ],
+  },
+  {
+    img: StackerImg,
     title: 'Stacker Game',
     skills: 'C embedded system',
     bullets: [
+      '%link%https://youtube.com/shorts/N5dH5szi48M?feature=share',
       'Built a C embedded system game utilizing an AVR microprocessor',
       'Architected a finite state machine to control 4 game states and state periods',
       'Incorporated an LED Matrix and LEDs for display and a button for user input; Produced sound effects and victory and game over songs through speaker output via pulse-width modulation ',
     ],
   },
   {
+    img: BrickEaterImg,
+    title: 'Brick Eater',
+    skills: 'C++, SFML',
+    bullets: [
+      '%link%https://youtu.be/MZM5cCYVHrM',
+      'Independently developed C++ game using Simple and Fast Multimedia Library (SFML)',
+      'Leverage finite state machine logic to implement robust game loop; Employed random number generation to randomize enemy size and spawn points',
+      'Incorporated original art, SFX, and music assets',
+    ],
+  },
+  {
+    img: HumanTaskManagerImg,
     title: 'Human Task Manager',
     skills: 'C++, Valgrind, GDB',
     bullets: [
@@ -149,15 +193,6 @@ const projects = [
       'Applied a Composite design pattern to fulfill recursive and hierarchical task/task list structure',
       "Constructed a Factory design pattern to parse user save data and reconstruct a user's saved tasks & task lists",
       'Conducted extensive unit testing of application using the Googletest framework; found and eliminated memory leaks using Valgrind ',
-    ],
-  },
-  {
-    title: 'Brick Eater',
-    skills: 'C++, SFML',
-    bullets: [
-      'Independently developed C++ game using Simple and Fast Multimedia Library (SFML)',
-      'Leverage finite state machine logic to implement robust game loop',
-      'Incorporated original art, SFX, and music assets',
     ],
   },
 ];

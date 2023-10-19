@@ -1,12 +1,5 @@
-import {
-  Box,
-  Container,
-  Grid,
-  List,
-  ListItem,
-  Typography,
-} from '@mui/material';
-import React, { useEffect } from 'react';
+import { Box, Container, Grid, Typography } from '@mui/material';
+import React, { useEffect, useRef } from 'react';
 import './Projects.css';
 import Navbar from './Navbar';
 import './Experience.css';
@@ -16,36 +9,30 @@ import JuniLogo from './img/juni.jpeg';
 import OnntekLogo from './img/onntek.png';
 
 function Experience() {
-  const options = {
-    root: null, // The viewport is the default root
-    rootMargin: '0px', // Margin around the root
-    threshold: 0.5, // Trigger the callback when 50% of the element is visible
-  };
+  const fadeInDivs = useRef([]);
 
-  const handleFade = (intersections) => {
-    intersections.forEach((ele) => {
-      if (ele.isIntersecting) {
-        ele.target.classList.add('visible');
-      } else if (ele.target.getBoundingClientRect().top > window.scrollY) {
-        ele.target.classList.remove('visible');
+  const handleScroll = (intersections) => {
+    fadeInDivs.current.forEach((div) => {
+      if (
+        div.getBoundingClientRect().top >=
+        (window.innerHeight || document.documentElement.clientHeight)
+      ) {
+        div.classList.remove('visible');
+      } else {
+        div.classList.add('visible');
       }
     });
   };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(handleFade, options);
-    setTimeout(() => {
-      const fadeInDivs = document.querySelectorAll('.fade-in');
-      fadeInDivs.forEach((div) => {
-        observer.observe(div);
-      });
-    }, 500);
+    document.addEventListener('scroll', handleScroll);
+    handleScroll();
+    fadeInDivs.current = document.querySelectorAll('.fade-in');
 
     return () => {
-      observer.disconnect();
+      document.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  const data = [1, 2, 3, 4, 5];
 
   return (
     <Container>
@@ -62,11 +49,12 @@ function Experience() {
               className='fade-in'
             >
               <Box
-                className='background-white'
                 sx={{
-                  minHeight: '100%',
-                  justifyContent: 'right',
+                  aspectRatio: '1 / 1',
+                  maxWidth: { xs: 'none', sm: '325px' },
+                  maxHeight: { xs: 'none', sm: '325px' },
                   display: 'flex',
+                  paddingLeft: { xs: '0', sm: 'calc(100% - 325px)' },
                 }}
               >
                 <Box
@@ -74,7 +62,6 @@ function Experience() {
                   sx={{
                     height: 'auto',
                     width: '100%',
-                    maxWidth: { xs: 'none', sm: '325px' },
                     objectFit: 'contain',
                     backgroundColor: 'white',
                   }}
