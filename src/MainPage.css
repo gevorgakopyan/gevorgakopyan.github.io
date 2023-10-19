@@ -1,13 +1,29 @@
-:root {
-  --cube-width: 300px;
-  --translateZ: 150px;
+@media (max-width: 425px) {
+  :root {
+    --cube-width: 200px;
+    --translateZ: 100px;
+  }
+}
+
+@media (min-width: 426px) {
+  :root {
+    --cube-width: 300px;
+    --translateZ: 150px;
+  }
+}
+
+@media (min-width: 1600px) {
+  :root {
+    --cube-width: 500px;
+    --translateZ: 250px;
+  }
 }
 
 body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   background: #000;
 }
 
@@ -20,8 +36,9 @@ header {
 }
 
 .container {
-  max-width: 1000px;
+  /* max-width: 1000px; */
   margin: 0 auto;
+  width: 80vw;
 }
 
 header h1 {
@@ -44,6 +61,8 @@ header .sub-heading {
   transform-style: preserve-3d;
 }
 .cube-container .cube-face {
+  -webkit-user-drag: 'none';
+  user-select: 'none';
   width: var(--cube-width);
   height: var(--cube-width);
   text-decoration: none;
