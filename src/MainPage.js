@@ -9,8 +9,8 @@ const MainPage = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);
-  const [rotateX, setRotateX] = useState(-35);
-  const [rotateY, setRotateY] = useState(-35);
+  const [rotateX, setRotateX] = useState(-25);
+  const [rotateY, setRotateY] = useState(45);
   const rotationValue = 0.5;
   const [linksDisabled, setLinksDisabled] = useState(false);
   const stillDragging = useRef(true);
@@ -91,20 +91,20 @@ const MainPage = () => {
             }}
           >
             <Link
-              to='/about-me'
+              to='/experience'
               className='cube-face front'
               draggable={false}
               style={{ pointerEvents: linksDisabled ? 'none' : 'auto' }}
             >
-              About Me
+              Experience
             </Link>
             <Link
-              to='/experience'
+              to='/about-me'
               className='cube-face back'
               draggable={false}
               style={{ pointerEvents: linksDisabled ? 'none' : 'auto' }}
             >
-              Experience
+              About Me
             </Link>
             <Link
               to='/projects'
